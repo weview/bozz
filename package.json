@@ -1,0 +1,31 @@
+{
+  "name": "bozz",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "bozz": "./bin/bozz"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "commander": "^2.10.0",
+    "extend": "^3.0.1",
+    "json-stringify-safe": "^5.0.1",
+    "promise-redis": "0.0.5",
+    "redis": "^2.7.1",
+    "uuid": "^3.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/weview-app/bozz.git"
+  },
+  "author": "Florian Bezagu <florian@bezagu.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/weview-app/bozz/issues"
+  },
+  "homepage": "https://github.com/weview-app/bozz#README"
+}

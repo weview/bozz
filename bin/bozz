@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const program = require(`commander`);
+const start   = require(`./start`);
+
+program
+  .version(`0.0.1`)
+  .usage('<cmd> [options]');
+
+program
+  .command(`start`)
+  .description(`start a local server which will serve a microservice`)
+  .action(start);
+
+program.parse(process.argv);
