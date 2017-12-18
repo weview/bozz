@@ -7,7 +7,11 @@ It allows you to build a coherent ecosystem based on two main principles :
   + Key based requests
   + Pattern based events
 
-## Example to understand requests
+## Requests
+
+Concept : Someone requests something, another one reacts and send a response.
+
+### Requests example
 
 A file `index.js` :
 ```javascript
@@ -56,4 +60,14 @@ ms.init()
 Run in one console `node service1.js` and in another `node service2.js`, look at the service2's console :
 ```javascript
 { id: 123, firstname: 'John', lastname: 'Doe' }
+```
+
+## Events
+
+Concept : Someone broadcasts an event and 0 to x others reacts but no one can answer.
+
+### Events example
+
+`service1.js` :
+```javascript
 ```

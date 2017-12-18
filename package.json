@@ -1,6 +1,6 @@
 {
   "name": "bozz",
-  "version": "0.0.9",
+  "version": "0.0.91",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,7 @@
     "commander": "^2.10.0",
     "extend": "^3.0.1",
     "json-stringify-safe": "^5.0.1",
+    "lodash": "^4.17.4",
     "promise-redis": "0.0.5",
     "redis": "^2.7.1",
     "simplyconfig": "^0.4.0",
