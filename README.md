@@ -71,3 +71,7 @@ Concept : Someone broadcasts an event and 0 to x others reacts but no one can an
 `service1.js` :
 ```javascript
 ```
+
+## Available plugins
+
+[bozz-load-dir](https://www.npmjs.com/package/bozz-load-dir) : Automatically load a directory of bozz files
