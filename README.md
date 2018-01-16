@@ -70,6 +70,35 @@ Concept : Someone broadcasts an event and 0 to x others reacts but no one can an
 
 `service1.js` :
 ```javascript
+const ms = require(`bozz`).createMs();
+
+ms.onEvent(`user:created`, console.log);
+ms.onEvent(`user:*`, console.log);
+
+ms.init();
+```
+
+`service2.js` :
+```javascript
+const ms = require(`bozz`).createMs();
+
+ms.onEvent(`user:created`, console.log);
+
+ms.init()
+.then(() => ms.request(`user:created`, { id : 123 }));
+```
+
+Run in one console `node service1.js` and in another `node service2.js`.
+
+Look at the service1's console :
+```javascript
+user:created { id : 123 }
+user:created { id : 123 }
+```
+
+Look at the service2's console :
+```javascript
+user:created { id : 123 }
 ```
 
 ## Available plugins
