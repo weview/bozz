@@ -85,7 +85,7 @@ const ms = require(`bozz`).createMs();
 ms.onEvent(`user:created`, console.log);
 
 ms.init()
-.then(() => ms.request(`user:created`, { id : 123 }));
+.then(() => ms.broadcast(`user:created`, { id : 123 }));
 ```
 
 Run in one console `node service1.js` and in another `node service2.js`.
