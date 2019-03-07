@@ -101,22 +101,6 @@ Look at the service2's console :
 user:created { id : 123 }
 ```
 
-## config
-
-`config` is an object used in `bozz.createMs(config)`.
-
-### name
-
-Default value = `package.json => name`
-
-With this param you can change the name your service will be see by Bozz.
-
-### namespace
-
-Default value = `default`
-
-With this param you can have multiple bozz applications running on the same server without conflicts.
-
 ## Available plugins
 
 [bozz-load-dir](https://www.npmjs.com/package/bozz-load-dir) : Automatically load a directory of bozz files
