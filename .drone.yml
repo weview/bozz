@@ -1,0 +1,80 @@
+kind: pipeline
+name: deploy
+
+steps:
+  - name: deploy_demo
+    image: appleboy/drone-scp
+    volumes:
+      - name: ssh
+        path: /drone-ssh
+    settings:
+      host: arlesienne.bizet.weview.fr
+      target: /var/www/services/weview-actions
+      username: drone
+      key_path: /drone-ssh/id_rsa_arlesienne
+      source: .
+    when:
+      branch:
+        - demo
+    rm: true
+  - name: reload_demo
+    image: appleboy/drone-ssh
+    volumes:
+        - name: ssh
+          path: /drone-ssh
+    when:
+      branch:
+        - demo
+    settings:
+      host: arlesienne.bizet.weview.fr
+      username: drone
+      port: 22
+      key_path: /drone-ssh/id_rsa_arlesienne
+      script:
+        - cd /var/www/services/
+        - docker-compose -f docker-compose-prod.yml restart actions
+  - name: deploy_prod
+    image: appleboy/drone-scp
+    volumes:
+      - name: ssh
+        path: /drone-ssh
+    settings:
+      host: carmen.bizet.weview.fr
+      target: /var/www/services/weview-actions
+      username: drone
+      key_path: /drone-ssh/id_rsa_carmen
+      source: .
+    when:
+      branch:
+        - master
+    rm: true
+  - name: reload_prod
+    image: appleboy/drone-ssh
+    volumes:
+      - name: ssh
+        path: /drone-ssh
+    when:
+      branch:
+        - master
+    settings:
+      host: carmen.bizet.weview.fr
+      username: drone
+      port: 22
+      key_path: /drone-ssh/id_rsa_carmen
+      script:
+        - cd /var/www/services/
+        - docker-compose -f docker-compose-prod.yml restart actions
+  - name: slack
+    image: plugins/slack
+    when:
+      status: [ success, failure ]
+    settings:
+      webhook: https://hooks.slack.com/services/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
+      channel: ci
+      username: DroneCI
+      icon_url: https://i.ibb.co/d7FJLyg/Logo-Drone.png
+
+volumes:
+  - name: ssh
+    host:
+      path: /home/tapecare/.ssh
