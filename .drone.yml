@@ -32,8 +32,9 @@ steps:
       key_path: /drone-ssh/id_rsa_arlesienne
       script:
         - cd /var/www/services/
-        - docker-compose -f docker-compose-prod.yml exec actions yarn run prepare
-        - docker-compose -f docker-compose-prod.yml restart actions
+        - docker container run --rm -i -u 1001:1002 --env-file .env -v /var/www/services/weview-actions:/app -w /app node:9 yarn run weview-prepare
+        - docker-compose -f docker-compose-prod.yml stop actions
+        - docker-compose -f docker-compose-prod.yml up -d actions
   - name: deploy_prod
     image: appleboy/drone-scp
     volumes:
@@ -64,8 +65,9 @@ steps:
       key_path: /drone-ssh/id_rsa_carmen
       script:
         - cd /var/www/services/
-        - docker-compose -f docker-compose-prod.yml exec actions yarn run prepare
-        - docker-compose -f docker-compose-prod.yml restart actions
+        - docker container run --rm -i -u 1001:1002 --env-file .env -v /var/www/services/weview-actions:/app -w /app node:9 yarn run weview-prepare
+        - docker-compose -f docker-compose-prod.yml stop actions
+        - docker-compose -f docker-compose-prod.yml up -d actions
   - name: slack
     image: plugins/slack
     when:
