@@ -32,6 +32,7 @@ steps:
       key_path: /drone-ssh/id_rsa_arlesienne
       script:
         - cd /var/www/services/
+        - docker-compose -f docker-compose-prod.yml exec actions yarn install
         - docker-compose -f docker-compose-prod.yml restart actions
   - name: deploy_prod
     image: appleboy/drone-scp
@@ -63,6 +64,7 @@ steps:
       key_path: /drone-ssh/id_rsa_carmen
       script:
         - cd /var/www/services/
+        - docker-compose -f docker-compose-prod.yml exec actions yarn install
         - docker-compose -f docker-compose-prod.yml restart actions
   - name: slack
     image: plugins/slack
